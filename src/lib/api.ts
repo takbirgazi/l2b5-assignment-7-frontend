@@ -1,8 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // lib/api.ts
 import axios from "axios"
 
+const baseURL = process.env.NEXT_PUBLIC_API_URL
+if (!baseURL) {
+    throw new Error("NEXT_PUBLIC_API_URL environment variable is not set")
+}
+
 const api = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_API_URL,
+    baseURL,
     withCredentials: true,
 })
 
@@ -19,14 +25,24 @@ api.interceptors.request.use((config) => {
 
 // Projects API
 export async function fetchProjects(limit = 10, page = 1) {
-    const res = await api.get(`/project/all?page=${page}&limit=${limit}`)
-    return res.data
+    try {
+        const res = await api.get(`/project/all?page=${page}&limit=${limit}`)
+        return res?.data
+    } catch (error: any) {
+        console.error("Failed to fetch projects:", error)
+        return null
+    }
 }
 
 // Blogs API
 export async function fetchBlogs(limit = 10, page = 1) {
-    const res = await api.get(`/blog/all?page=${page}&limit=${limit}`)
-    return res.data
+    try {
+        const res = await api.get(`/blog/all?page=${page}&limit=${limit}`)
+        return res?.data
+    } catch (error: any) {
+        console.error("Failed to fetch blogs:", error)
+        return null
+    }
 }
 
 export default api

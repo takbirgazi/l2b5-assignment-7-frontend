@@ -97,8 +97,7 @@ frontend/
     Create a `.env` file and set:
 
     ```
-    NEXT_PUBLIC_API_URL=https://your-backend-url.vercel.app/api/v1
-    NEXT_PUBLIC_SITE_NAME=Your Portfolio
+    NEXT_PUBLIC_API_URL=your-backend-url
     ```
 
 4. **Run the development server:**
