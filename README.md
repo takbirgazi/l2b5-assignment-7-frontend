@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌐 Portfolio Frontend — (Next.js + TypeScript + TailwindCSS + `shadcn/ui`)
+
+> A modern, responsive frontend for the Portfolio project, built with **Next.js App Router**, **TypeScript**, **TailwindCSS**, and **`shadcn/ui`**.  
+> Features dynamic content fetching (blogs, projects) from a backend API, polished UI, and secure JWT-based authentication for dashboard access.
+
+---
+
+## Features
+
+### Public Pages
+- Engaging hero section with background image and call-to-action
+- About section with concise bio and "See More" option
+- Blog and project listings
+- Skills showcase
+- Client testimonials
+- Fully responsive and accessible design
+- Incremental Static Regeneration (ISR) for blogs and projects
+
+### Private Pages (Admin Only)
+- Secure JWT authentication for login
+- Owner dashboard to manage blogs and projects
+- Create, update, and delete blog/project entries
+- Robust form validation and error handling
+- Toast notifications for user feedback
+
+### Additional Highlights
+- Smooth UI interactions with `shadcn/ui` components
+- Reusable hooks (`useAuth`, `useFetch`) and API utilities
+- Lazy-loading for performance optimization
+- Semantic and accessible HTML
+
+---
+
+## Tech Stack
+
+- **Framework:** Next.js 15 (App Router)  
+- **Language:** TypeScript  
+- **Styling:** TailwindCSS, `shadcn/ui`  
+- **HTTP:** Axios / fetch  
+- **Authentication & State:** JWT, localStorage, custom hooks  
+- **Notifications:** react-hot-toast  
+
+---
+
+## Recommended Folder Structure
+
+```
+frontend/
+├── app/                # Next.js App Router pages
+│   ├── dashboard/      # Admin dashboard
+│   ├── blog/           # Blog pages
+│   ├── project/        # Project pages
+│   ├── page.tsx        # Home page
+│   └── layout.tsx      # Root layout
+├── components/         # Reusable UI components
+│   ├── Hero.tsx
+│   ├── About.tsx
+│   ├── BlogSection.tsx
+│   ├── ProjectSection.tsx
+│   ├── Skills.tsx
+│   ├── Testimonials.tsx
+│   └── Navbar.tsx
+├── lib/                # API calls & utilities
+│   ├── api.ts
+│   └── utils.ts
+├── hooks/              # Custom React hooks
+│   ├── useAuth.ts
+│   └── useFetch.ts
+├── public/
+├── .env                # Environment variables
+├── package.json
+├── tsconfig.json
+└── README.md
+```
+
+---
 
 ## Getting Started
 
-First, run the development server:
+1. **Clone the repository:**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+    ```bash
+    git clone https://github.com/takbirgazi/l2b5-portfolio-frontend.git
+    cd l2b5-portfolio-frontend
+    ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Install dependencies:**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+    ```bash
+    npm install
+    # or
+    yarn install
+    ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. **Configure environment variables:**
 
-## Learn More
+    Create a `.env` file and set:
 
-To learn more about Next.js, take a look at the following resources:
+    ```
+    NEXT_PUBLIC_API_URL=https://your-backend-url.vercel.app/api/v1
+    NEXT_PUBLIC_SITE_NAME=Your Portfolio
+    ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. **Run the development server:**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+    ```bash
+    npm run dev
+    # or
+    yarn dev
+    ```
