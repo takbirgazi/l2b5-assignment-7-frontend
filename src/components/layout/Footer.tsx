@@ -10,7 +10,7 @@ export default async function Footer() {
 
     return (
         <footer className="bg-gray-900 text-gray-300 py-10 px-6">
-            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
 
                 {/* Brand Section */}
                 <div>
@@ -41,8 +41,8 @@ export default async function Footer() {
                     <ul className="space-y-2 text-sm">
                         <li><Link href="/" className="hover:underline">Home</Link></li>
                         <li><Link href="/about" className="hover:underline">About Us</Link></li>
-                        <li><Link href="/features" className="hover:underline">Features</Link></li>
-                        <li><Link href="/faq" className="hover:underline">FAQs</Link></li>
+                        <li><Link href="/blog" className="hover:underline">Blog</Link></li>
+                        <li><Link href="/project" className="hover:underline">Projects</Link></li>
                         <li><Link href="/contact" className="hover:underline">Contact</Link></li>
                     </ul>
                 </div>

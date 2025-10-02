@@ -21,9 +21,9 @@ import logoMain from '@/assets/images/logo-main.png';
 const navigationLinks = [
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
-    { href: "/features", label: "Features" },
+    { href: "/blog", label: "Blog" },
+    { href: "/project", label: "Project" },
     { href: "/contact", label: "Contact" },
-    { href: "/faq", label: "FAQ" },
 ];
 
 
