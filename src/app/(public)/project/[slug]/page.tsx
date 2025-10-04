@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import Link from "next/link";
-import { ArrowLeft, ExternalLink, Github, Calendar, Code2 } from "lucide-react";
+import { ArrowLeft, ExternalLink, Github, Calendar, Code2, Sparkles } from "lucide-react";
 import { IProject } from "@/types/project"
 import { fetchProjectBySlug } from "@/lib/apis"
 import Image from "next/image";
@@ -150,11 +150,6 @@ export default function SingleProjectPage() {
 
                 <Separator className="mb-8" />
 
-                {/* Description */}
-                <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                    {project.description}
-                </p>
-
                 {/* Project Image/Preview */}
                 <div className="rounded-lg overflow-hidden border-2 mb-12">
                     {project.thumbnail ? (
@@ -167,6 +162,11 @@ export default function SingleProjectPage() {
                         </div>
                     )}
                 </div>
+
+                {/* Description */}
+                <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                    {project.description}
+                </p>
 
                 {/* Technologies Used */}
                 {project.techStack && project.techStack.length > 0 && (
@@ -187,22 +187,26 @@ export default function SingleProjectPage() {
                     </Card>
                 )}
 
-                {/* Related Projects */}
-                <div className="mt-12">
-                    <h2 className="text-2xl font-bold mb-6">More Projects</h2>
-                    <div className="grid md:grid-cols-3 gap-6">
-                        <p className="text-muted-foreground col-span-3 text-center py-8">
-                            Explore more projects
-                        </p>
-                    </div>
-                    <div className="text-center mt-6">
-                        <Link href="/projects">
-                            <Button className="cursor-pointer" variant="outline" size="lg">
-                                View All Projects
-                            </Button>
-                        </Link>
-                    </div>
-                </div>
+                {/* CTA */}
+                <section className="py-16 max-w-6xl mx-auto px-6">
+                    <Card className="border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-background overflow-hidden relative">
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+                        <CardContent className="p-12 text-center relative z-10">
+                            <Sparkles className="h-12 w-12 mx-auto mb-4 text-primary" />
+                            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                                Have a Project in Mind?
+                            </h2>
+                            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+                                I&apos;m always open to discussing new projects, creative ideas, or opportunities to collaborate.
+                            </p>
+                            <Link href="/contact">
+                                <Button size="lg" className="rounded-full px-8 cursor-pointer">
+                                    Let&apos;s Work Together
+                                </Button>
+                            </Link>
+                        </CardContent>
+                    </Card>
+                </section>
             </section>
         </div>
     )

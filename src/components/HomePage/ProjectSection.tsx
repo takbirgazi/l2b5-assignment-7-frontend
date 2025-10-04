@@ -20,7 +20,7 @@ function ProjectSection({ projects }: { projects: IProject[] }) {
                         </Badge>
                         <h2 className="text-4xl md:text-5xl font-bold">Featured Projects</h2>
                     </div>
-                    <Link href="/projects">
+                    <Link href="/project">
                         <Button variant="outline" className="rounded-full">
                             View All Projects
                             <ArrowRight className="ml-2 w-4 h-4" />

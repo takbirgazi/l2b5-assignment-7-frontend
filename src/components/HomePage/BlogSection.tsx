@@ -18,7 +18,7 @@ function BlogSection({ blogs }: { blogs: IBlog[] }) {
                     </Badge>
                     <h2 className="text-4xl md:text-5xl font-bold">Latest Articles</h2>
                 </div>
-                <Link href="/blogs">
+                <Link href="/blog">
                     <Button variant="outline" className="rounded-full">
                         View All Posts
                         <ArrowRight className="ml-2 w-4 h-4" />
