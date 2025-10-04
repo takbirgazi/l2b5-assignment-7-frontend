@@ -17,6 +17,7 @@ const ProjectPageClient = () => {
 
     useEffect(() => {
         loadProjects()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentPage])
 
     const loadProjects = async () => {

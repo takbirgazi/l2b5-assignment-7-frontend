@@ -102,7 +102,7 @@ export async function updateProject(slug: string, projectData: any) {
     }
 };
 
-export async function deleteProject(id: string) {
+export async function deleteProject(id: number) {
     try {
         const res = await axiosInterceptor.delete(`/project/${id}`)
         return res.data
@@ -154,7 +154,7 @@ export async function updateBlog(slug: string, blogData: any) {
     }
 };
 
-export async function deleteBlog(id: string) {
+export async function deleteBlog(id: number) {
     try {
         const res = await axiosInterceptor.delete(`/blog/${id}`)
         return res.data

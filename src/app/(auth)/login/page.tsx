@@ -60,7 +60,7 @@ export default function LoginPage() {
 
             if (response && response.data.accessToken) {
                 // Success - redirect to dashboard or home
-                router.push("/about")
+                router.push("/dashboard")
                 router.refresh()
             }
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
