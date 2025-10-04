@@ -6,12 +6,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Link from "next/link";
-import { ArrowLeft, ExternalLink, Github, Calendar, Code2, Lightbulb, Target, Users } from "lucide-react";
-
+import { ArrowLeft, ExternalLink, Github, Calendar, Code2 } from "lucide-react";
 import { IProject } from "@/types/project"
 import { fetchProjectBySlug } from "@/lib/apis"
+import Image from "next/image";
 
 
 export default function SingleProjectPage() {
@@ -84,9 +83,9 @@ export default function SingleProjectPage() {
             {/* Project Header */}
             <section className="max-w-6xl mx-auto px-6 pb-12">
                 {/* Category Badge */}
-                {project.category && (
+                {project.features && (
                     <Badge variant="secondary" className="mb-4 capitalize">
-                        {project.category}
+                        {project.features}
                     </Badge>
                 )}
 
@@ -97,31 +96,26 @@ export default function SingleProjectPage() {
 
                 {/* Meta Info */}
                 <div className="flex flex-wrap items-center gap-6 mb-8 text-muted-foreground">
-                    {project.createdAt && (
+                    {project.startDate && (
                         <div className="flex items-center gap-2">
+                            <span>From:</span>
                             <Calendar className="h-4 w-4" />
-                            <span>{new Date(project.createdAt).toLocaleDateString('en-US', {
+                            <span>{new Date(project.startDate).toLocaleDateString('en-US', {
                                 month: 'long',
+                                day: 'numeric',
                                 year: 'numeric'
                             })}</span>
                         </div>
                     )}
-                    {project.duration && (
+                    {project.endDate && (
                         <div className="flex items-center gap-2">
-                            <Code2 className="h-4 w-4" />
-                            <span>{project.duration}</span>
-                        </div>
-                    )}
-                    {project.teamSize && (
-                        <div className="flex items-center gap-2">
-                            <Users className="h-4 w-4" />
-                            <span>{project.teamSize} Team Members</span>
-                        </div>
-                    )}
-                    {project.role && (
-                        <div className="flex items-center gap-2">
-                            <Target className="h-4 w-4" />
-                            <span>{project.role}</span>
+                            <span>To:</span>
+                            <Calendar className="h-4 w-4" />
+                            <span>{new Date(project.endDate).toLocaleDateString('en-US', {
+                                month: 'long',
+                                day: 'numeric',
+                                year: 'numeric'
+                            })}</span>
                         </div>
                     )}
                 </div>
@@ -136,8 +130,16 @@ export default function SingleProjectPage() {
                             </Button>
                         </Link>
                     )}
-                    {project.githubUrl && (
-                        <Link href={project.githubUrl} target="_blank">
+                    {project.frontendGitUrl && (
+                        <Link href={project.frontendGitUrl} target="_blank">
+                            <Button size="lg" variant="outline" className="gap-2">
+                                <Github className="h-5 w-5" />
+                                View Source Code
+                            </Button>
+                        </Link>
+                    )}
+                    {project.backendGitUrl && (
+                        <Link href={project.backendGitUrl} target="_blank">
                             <Button size="lg" variant="outline" className="gap-2">
                                 <Github className="h-5 w-5" />
                                 View Source Code
@@ -155,12 +157,10 @@ export default function SingleProjectPage() {
 
                 {/* Project Image/Preview */}
                 <div className="rounded-lg overflow-hidden border-2 mb-12">
-                    {project.imageUrl ? (
-                        <img
-                            src={project.imageUrl}
-                            alt={project.name}
-                            className="w-full h-auto"
-                        />
+                    {project.thumbnail ? (
+                        <figure>
+                            <Image src={project.thumbnail} alt={project.name} />
+                        </figure>
                     ) : (
                         <div className="h-96 bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
                             <Code2 className="h-24 w-24 text-primary/30" />
@@ -169,7 +169,7 @@ export default function SingleProjectPage() {
                 </div>
 
                 {/* Technologies Used */}
-                {project.technologies && project.technologies.length > 0 && (
+                {project.techStack && project.techStack.length > 0 && (
                     <Card className="mb-8 border-2">
                         <CardContent className="p-6">
                             <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
@@ -177,7 +177,7 @@ export default function SingleProjectPage() {
                                 Technologies Used
                             </h2>
                             <div className="flex flex-wrap gap-2">
-                                {project.technologies.map((tech) => (
+                                {project.techStack.map((tech) => (
                                     <Badge key={tech} variant="secondary" className="px-4 py-2 text-sm">
                                         {tech}
                                     </Badge>
@@ -186,97 +186,6 @@ export default function SingleProjectPage() {
                         </CardContent>
                     </Card>
                 )}
-
-                {/* Tabs Section */}
-                <Tabs defaultValue="features" className="mb-12">
-                    <TabsList className="grid w-full grid-cols-3">
-                        <TabsTrigger value="features">Features</TabsTrigger>
-                        <TabsTrigger value="challenges">Challenges</TabsTrigger>
-                        <TabsTrigger value="learnings">Key Learnings</TabsTrigger>
-                    </TabsList>
-
-                    <TabsContent value="features" className="mt-6">
-                        <Card className="border-2">
-                            <CardContent className="p-6">
-                                <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-                                    <Lightbulb className="h-5 w-5 text-primary" />
-                                    Key Features
-                                </h3>
-                                {project.features && project.features.length > 0 ? (
-                                    <ul className="space-y-3">
-                                        {project.features.map((feature, index) => (
-                                            <li key={index} className="flex items-start gap-3">
-                                                <span className="text-primary mt-1">✓</span>
-                                                <span className="text-muted-foreground">{feature}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                ) : (
-                                    <ul className="list-disc list-inside text-muted-foreground space-y-1">
-                                        <li>High-quality, responsive user interface</li>
-                                        <li>Seamless user experience across devices</li>
-                                        <li>Modern design patterns and best practices</li>
-                                        <li>Optimized performance and loading times</li>
-                                    </ul>
-                                )}
-                            </CardContent>
-                        </Card>
-                    </TabsContent>
-
-                    <TabsContent value="challenges" className="mt-6">
-                        <Card className="border-2">
-                            <CardContent className="p-6">
-                                <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-                                    <Target className="h-5 w-5 text-primary" />
-                                    Challenges & Solutions
-                                </h3>
-                                {project.challenges && project.challenges.length > 0 ? (
-                                    <ul className="space-y-3">
-                                        {project.challenges.map((challenge, index) => (
-                                            <li key={index} className="flex items-start gap-3">
-                                                <span className="text-primary mt-1">•</span>
-                                                <span className="text-muted-foreground">{challenge}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                ) : (
-                                    <p className="text-muted-foreground">
-                                        This project involved solving complex technical challenges including
-                                        performance optimization, scalability considerations, and creating
-                                        an intuitive user experience.
-                                    </p>
-                                )}
-                            </CardContent>
-                        </Card>
-                    </TabsContent>
-
-                    <TabsContent value="learnings" className="mt-6">
-                        <Card className="border-2">
-                            <CardContent className="p-6">
-                                <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-                                    <Lightbulb className="h-5 w-5 text-primary" />
-                                    What I Learned
-                                </h3>
-                                {project.learnings && project.learnings.length > 0 ? (
-                                    <ul className="space-y-3">
-                                        {project.learnings.map((learning, index) => (
-                                            <li key={index} className="flex items-start gap-3">
-                                                <span className="text-primary mt-1">→</span>
-                                                <span className="text-muted-foreground">{learning}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                ) : (
-                                    <p className="text-muted-foreground">
-                                        Through this project, I gained valuable experience in full-stack development,
-                                        improved my understanding of modern web technologies, and learned best practices
-                                        for building scalable applications.
-                                    </p>
-                                )}
-                            </CardContent>
-                        </Card>
-                    </TabsContent>
-                </Tabs>
 
                 {/* Related Projects */}
                 <div className="mt-12">

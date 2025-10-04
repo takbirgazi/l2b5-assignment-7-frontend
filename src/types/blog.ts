@@ -1,13 +1,17 @@
 export interface IBlog {
-    id: string
-    title: string
-    content: string
-    slug: string
-    category?: string
-    createdAt: string
-    author?: {
-        name: string
-        avatar?: string
-    }
-    tags?: string[]
+    id: number;
+    title: string;
+    slug: string;
+    content: string;
+    thumbnail?: string;
+    isFeatured: boolean;
+    tags: string[];
+    views: number;
+    author: {
+        name: string;
+        email?: string;
+        picture?: string;
+    };
+    createdAt: Date;
+    updatedAt: Date;
 }
