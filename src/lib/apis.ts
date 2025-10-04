@@ -11,11 +11,6 @@ export async function login(credentials: LoginCredentials): Promise<AuthResponse
         const res = await axiosInterceptor.post('/auth/login', credentials)
 
         if (res.data.accessToken && res.data.refreshToken) {
-            // Store tokens in localStorage
-            localStorage.setItem("accessToken", res.data.accessToken)
-            localStorage.setItem("refreshToken", res.data.refreshToken)
-
-            // Optionally store user info
             if (res.data.user) {
                 localStorage.setItem("user", JSON.stringify(res.data.user))
             }

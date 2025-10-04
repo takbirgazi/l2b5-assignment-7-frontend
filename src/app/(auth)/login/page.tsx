@@ -50,13 +50,14 @@ export default function LoginPage() {
             }
 
             // Import login function dynamically to avoid build issues
-            const { login } = await import("@/lib/axios")
+            const { login } = await import("@/lib/apis")
 
-            const response = await login({
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const response: any = await login({
                 email: formData.email,
                 password: formData.password
             })
-            console.log(response)
+
             if (response && response.data.accessToken) {
                 // Success - redirect to dashboard or home
                 router.push("/about")
