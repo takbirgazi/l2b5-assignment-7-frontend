@@ -2,8 +2,8 @@ import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import logoMain from "@/assets/images/logo-main.png";
-import { fetchBlogs } from "@/lib/api";
 import { IBlog } from "@/types/blog";
+import { fetchBlogs } from "@/lib/apis";
 
 export default async function Footer() {
     const blogs = await fetchBlogs(5, 1);

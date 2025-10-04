@@ -11,7 +11,7 @@ function Feedback() {
 
     return (
         <section className="py-24 bg-muted/30">
-            <div className="max-w-6xl mx-auto px-6">
+            <div className="container mx-auto px-6">
                 <div className="text-center mb-16">
                     <Badge variant="outline" className="mb-4">
                         <Quote className="w-4 h-4 mr-2" />

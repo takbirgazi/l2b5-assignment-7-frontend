@@ -21,7 +21,7 @@ const Hero = () => {
                 <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
             </div>
 
-            <div className={`relative z-10 m-auto flex max-w-6xl flex-col items-center justify-center gap-8 px-6 text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <div className={`relative z-10 m-auto flex container flex-col items-center justify-center gap-8 px-6 text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                 {/* Badge */}
                 <Badge variant="secondary" className="px-4 py-2 text-sm font-medium animate-bounce">
                     <Sparkles className="w-4 h-4 mr-2" />
@@ -64,29 +64,22 @@ const Hero = () => {
                 </div>
 
                 {/* Social Links */}
-                <div className="flex gap-3 mt-8">
+                <div className="flex gap-3 mt-8 pb-5">
                     <Link href="https://github.com/takbirgazi" target="_blank">
                         <Button variant="ghost" size="icon" className="cursor-pointer rounded-full hover:bg-primary/10">
-                            <Github className="w-5 h-5" />
+                            <Github />
                         </Button>
                     </Link>
                     <Link href="https://linkedin.com/in/takbirgazi" target="_blank">
                         <Button variant="ghost" size="icon" className="cursor-pointer rounded-full hover:bg-primary/10">
-                            <Linkedin className="w-5 h-5" />
+                            <Linkedin />
                         </Button>
                     </Link>
                     <Link href="https://www.facebook.com/takbirgazibd" target="_blank">
                         <Button variant="ghost" size="icon" className="cursor-pointer rounded-full hover:bg-primary/10">
-                            <Facebook className="w-5 h-5" />
+                            <Facebook />
                         </Button>
                     </Link>
-                </div>
-
-                {/* Scroll Indicator */}
-                <div className="absolute bottom-8 animate-bounce">
-                    <div className="w-6 h-10 border-2 border-primary rounded-full flex items-start justify-center p-2">
-                        <div className="w-1 h-3 bg-primary rounded-full animate-pulse"></div>
-                    </div>
                 </div>
             </div>
         </section>

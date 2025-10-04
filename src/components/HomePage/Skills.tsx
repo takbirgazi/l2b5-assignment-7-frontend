@@ -20,7 +20,7 @@ function Skills() {
     ]
 
     return (
-        <section className="py-24 max-w-6xl mx-auto px-6">
+        <section className="py-24 container mx-auto px-6">
             <div className="text-center mb-16">
                 <Badge variant="outline" className="mb-4">
                     <Sparkles className="w-4 h-4 mr-2" />

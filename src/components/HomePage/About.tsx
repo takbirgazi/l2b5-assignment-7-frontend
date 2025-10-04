@@ -7,7 +7,7 @@ import { Card, CardContent } from "../ui/card";
 
 function About() {
     return (
-        <section className="py-24 max-w-6xl mx-auto px-6">
+        <section className="py-24 container mx-auto px-6">
             <div className="grid md:grid-cols-2 gap-12 items-center">
                 {/* Left Side - Text */}
                 <div className="space-y-6">

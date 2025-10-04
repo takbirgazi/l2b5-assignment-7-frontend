@@ -32,7 +32,7 @@ function ProjectSection() {
 
     return (
         <section className="py-24 bg-muted/30">
-            <div className="max-w-6xl mx-auto px-6">
+            <div className="container mx-auto px-6">
                 <div className="flex justify-between items-center mb-12">
                     <div>
                         <Badge variant="outline" className="mb-4">

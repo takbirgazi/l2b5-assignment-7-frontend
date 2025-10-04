@@ -6,7 +6,7 @@ import { ArrowRight } from "lucide-react";
 
 function CTASection() {
     return (
-        <section className="py-24 max-w-6xl mx-auto px-6">
+        <section className="py-24 container mx-auto px-6">
             <Card className="border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-background overflow-hidden relative">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
                 <CardContent className="p-12 text-center relative z-10">

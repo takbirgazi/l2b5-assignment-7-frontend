@@ -28,7 +28,7 @@ function BlogSection() {
     ]
 
     return (
-        <section className="py-24 max-w-6xl mx-auto px-6">
+        <section className="py-24 container mx-auto px-6">
             <div className="flex justify-between items-center mb-12">
                 <div>
                     <Badge variant="outline" className="mb-4">
