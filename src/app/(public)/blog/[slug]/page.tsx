@@ -48,7 +48,7 @@ export default async function SingleBlogPage({ params }: { params: Promise<{ slu
   const slug = (await params).slug
   const blog = await fetchBlogBySlug(slug)
 
-  if (!blog.success || !blog.data) {
+  if (!blog) {
     notFound()
   }
 
