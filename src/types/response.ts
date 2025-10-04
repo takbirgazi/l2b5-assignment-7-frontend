@@ -8,7 +8,7 @@ export interface AuthResponse {
     message: string
     accessToken: string
     refreshToken: string
-    user?: {
+    data?: {
         id: string
         email: string
         name: string

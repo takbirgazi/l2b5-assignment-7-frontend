@@ -70,7 +70,17 @@ export async function fetchProjects(limit = 10, page = 1) {
         console.error("Failed to fetch projects:", error?.message || error)
         return { data: [], total: 0, page, limit }
     }
-}
+};
+
+export async function fetchProjectBySlug(slug: string) {
+    try {
+        const res = await axiosInterceptor.get(`/project/${slug}`)
+        return res?.data
+    } catch (error: any) {
+        console.error("Failed to fetch project by slug:", error?.message || error)
+        return null
+    }
+};
 
 export async function createProject(projectData: any) {
     try {
@@ -80,7 +90,7 @@ export async function createProject(projectData: any) {
         console.error("Failed to create project:", error)
         throw error
     }
-}
+};
 
 export async function updateProject(slug: string, projectData: any) {
     try {
@@ -90,7 +100,7 @@ export async function updateProject(slug: string, projectData: any) {
         console.error("Failed to update project:", error)
         throw error
     }
-}
+};
 
 export async function deleteProject(id: string) {
     try {
@@ -100,7 +110,7 @@ export async function deleteProject(id: string) {
         console.error("Failed to delete project:", error)
         throw error
     }
-}
+};
 
 // ==================== BLOGS APIs ====================
 
@@ -112,7 +122,17 @@ export async function fetchBlogs(limit = 10, page = 1) {
         console.error("Failed to fetch blogs:", error?.message || error)
         return { data: [], total: 0, page, limit }
     }
-}
+};
+
+export async function fetchBlogBySlug(slug: string) {
+    try {
+        const res = await axiosInterceptor.get(`/blog/${slug}`)
+        return res?.data
+    } catch (error: any) {
+        console.error("Failed to fetch blog by slug:", error?.message || error)
+        return null
+    }
+};
 
 export async function createBlog(blogData: any) {
     try {
@@ -122,7 +142,7 @@ export async function createBlog(blogData: any) {
         console.error("Failed to create blog:", error)
         throw error
     }
-}
+};
 
 export async function updateBlog(slug: string, blogData: any) {
     try {
@@ -132,7 +152,7 @@ export async function updateBlog(slug: string, blogData: any) {
         console.error("Failed to update blog:", error)
         throw error
     }
-}
+};
 
 export async function deleteBlog(id: string) {
     try {
@@ -142,4 +162,4 @@ export async function deleteBlog(id: string) {
         console.error("Failed to delete blog:", error)
         throw error
     }
-}
+};
