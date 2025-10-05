@@ -1,6 +1,8 @@
+"use server"
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { LoginCredentials } from "@/types/response";
 import axiosInterceptor from "./axios";
+import { cookies } from "next/headers";
 
 
 // ==================== AUTH APIs ====================
@@ -40,18 +42,6 @@ export async function getCurrentUser() {
     }
 }
 
-// Check if user is authenticated
-export function isAuthenticated(): boolean {
-    if (typeof window === "undefined") return false
-    return !!localStorage.getItem("accessToken")
-}
-
-// Get stored user info
-export function getStoredUser() {
-    if (typeof window === "undefined") return null
-    const userStr = localStorage.getItem("user")
-    return userStr ? JSON.parse(userStr) : null
-}
 
 // ==================== PROJECTS APIs ====================
 
@@ -76,33 +66,53 @@ export async function fetchProjectBySlug(slug: string) {
 };
 
 export async function createProject(projectData: any) {
-    try {
-        const res = await axiosInterceptor.post('/project/create', projectData)
-        return res.data
-    } catch (error: any) {
-        console.error("Failed to create project:", error)
-        throw error
-    }
-};
+    const cookieStore = await cookies()
+    const token = cookieStore.get('accessToken')?.value
 
-export async function updateProject(slug: string, projectData: any) {
-    try {
-        const res = await axiosInterceptor.put(`/project/${slug}`, projectData)
-        return res.data
-    } catch (error: any) {
-        console.error("Failed to update project:", error)
-        throw error
-    }
-};
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/project/create`, {
+        method: 'POST',
+        headers: {
+            'Authorization': `${token}`,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(projectData),
+    })
+
+    if (!res.ok) throw new Error('Failed to create project')
+    return await res.json()
+}
 
 export async function deleteProject(id: number) {
-    try {
-        const res = await axiosInterceptor.delete(`/project/${id}`)
-        return res.data
-    } catch (error: any) {
-        console.error("Failed to delete project:", error)
-        throw error
-    }
+    const cookieStore = await cookies()
+    const token = cookieStore.get('accessToken')?.value
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/project/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': `${token}`,
+        },
+    })
+
+    if (!res.ok) throw new Error('Failed to delete project')
+    return await res.json()
+}
+
+export async function updateProject(slug: string, projectData: any) {
+
+    const cookieStore = await cookies()
+    const token = cookieStore.get('accessToken')?.value
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/project/${slug}`, {
+        method: 'PUT',
+        headers: {
+            'Authorization': `${token}`,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(projectData),
+    })
+
+    if (!res.ok) throw new Error('Failed to create project')
+    return await res.json()
 };
 
 // ==================== BLOGS APIs ====================
@@ -128,31 +138,52 @@ export async function fetchBlogBySlug(slug: string) {
 };
 
 export async function createBlog(blogData: any) {
-    try {
-        const res = await axiosInterceptor.post('/blog/create', blogData)
-        return res.data
-    } catch (error: any) {
-        console.error("Failed to create blog:", error)
-        throw error
-    }
-};
+    const cookieStore = await cookies()
+    const token = cookieStore.get('accessToken')?.value
 
-export async function updateBlog(slug: string, blogData: any) {
-    try {
-        const res = await axiosInterceptor.put(`/blog/${slug}`, blogData)
-        return res.data
-    } catch (error: any) {
-        console.error("Failed to update blog:", error)
-        throw error
-    }
-};
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blog/create`, {
+        method: 'POST',
+        headers: {
+            'Authorization': `${token}`,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(blogData),
+    })
+
+    if (!res.ok) throw new Error('Failed to create blog')
+    return await res.json()
+}
 
 export async function deleteBlog(id: number) {
-    try {
-        const res = await axiosInterceptor.delete(`/blog/${id}`)
-        return res.data
-    } catch (error: any) {
-        console.error("Failed to delete blog:", error)
-        throw error
-    }
+    const cookieStore = await cookies()
+    const token = cookieStore.get('accessToken')?.value
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blog/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': `${token}`,
+        },
+    })
+
+    if (!res.ok) throw new Error('Failed to delete blog')
+    return await res.json()
+}
+
+
+export async function updateBlog(slug: string, blogData: any) {
+
+    const cookieStore = await cookies()
+    const token = cookieStore.get('accessToken')?.value
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blog/${slug}`, {
+        method: 'POST',
+        headers: {
+            'Authorization': `${token}`,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(blogData),
+    })
+
+    if (!res.ok) throw new Error('Failed to create blog')
+    return await res.json()
 };
