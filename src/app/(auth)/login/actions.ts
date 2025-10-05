@@ -3,7 +3,7 @@ import { cookies } from "next/headers"
 
 export async function handleLogin(email: string, password: string) {
     try {
-        // Call your backend API
+        // Call your backend API here for cookie setup
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
             method: 'POST',
             headers: {
@@ -29,7 +29,7 @@ export async function handleLogin(email: string, password: string) {
             cookieStore.set('accessToken', data.data.accessToken, {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production',
-                sameSite: 'lax',
+                sameSite: 'none',
                 maxAge: 60 * 60 * 24, // 24 hours
                 path: '/',
             })
@@ -39,7 +39,7 @@ export async function handleLogin(email: string, password: string) {
             cookieStore.set('refreshToken', data.data.refreshToken, {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production',
-                sameSite: 'lax',
+                sameSite: 'none',
                 maxAge: 60 * 60 * 24 * 30, // 30 days
                 path: '/',
             })
