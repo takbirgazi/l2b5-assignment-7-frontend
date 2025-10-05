@@ -9,7 +9,6 @@ if (!baseURL) {
 const axiosInterceptor = axios.create({
     baseURL,
     withCredentials: true,
-    timeout: 10000, // 10 second timeout
 })
 
 // Add token automatically if stored in localStorage

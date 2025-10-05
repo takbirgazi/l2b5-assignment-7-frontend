@@ -6,7 +6,7 @@ import axiosInterceptor from "./axios";
 // ==================== AUTH APIs ====================
 
 // Login
-// lib/apis.ts - Update login function
+
 export async function login(credentials: LoginCredentials) {
     try {
         const res = await axiosInterceptor.post('/auth/login', credentials)

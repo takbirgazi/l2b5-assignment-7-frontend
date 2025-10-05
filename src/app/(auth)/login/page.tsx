@@ -114,7 +114,7 @@ export default function LoginPage() {
                                     id="email"
                                     name="email"
                                     type="email"
-                                    placeholder="takbirgazibd@gmail.com"
+                                    placeholder="example@gmail.com"
                                     value={formData.email}
                                     onChange={handleChange}
                                     disabled={isLoading}
@@ -130,12 +130,6 @@ export default function LoginPage() {
                                 <Label htmlFor="password" className="text-sm font-medium">
                                     Password
                                 </Label>
-                                <Link
-                                    href="/forgot-password"
-                                    className="text-xs text-primary hover:underline"
-                                >
-                                    Forgot password?
-                                </Link>
                             </div>
                             <div className="relative">
                                 <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
