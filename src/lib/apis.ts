@@ -10,13 +10,6 @@ import axiosInterceptor from "./axios";
 export async function login(credentials: LoginCredentials) {
     try {
         const res = await axiosInterceptor.post('/auth/login', credentials)
-
-        if (res.data.accessToken && res.data.refreshToken) {
-            // Set cookies
-            document.cookie = `accessToken=${res.data.accessToken}; path=/; max-age=86400; SameSite=Lax`
-            document.cookie = `refreshToken=${res.data.refreshToken}; path=/; max-age=2592000; SameSite=Lax`
-        }
-
         return res.data
     } catch (error: any) {
         throw error
