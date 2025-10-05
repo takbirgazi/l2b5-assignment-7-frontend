@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/sidebar"
 import { NavUser } from "./NavUser";
 import { cookies } from "next/headers";
+import Link from "next/link";
 
 // This is sample data.
 const data = {
@@ -24,12 +25,16 @@ const data = {
             url: "#",
             items: [
                 {
-                    title: "Installation",
-                    url: "#",
+                    title: "Overview",
+                    url: "/dashboard",
                 },
                 {
-                    title: "Project Structure",
-                    url: "#",
+                    title: "Add Blog",
+                    url: "/dashboard/add-blog",
+                },
+                {
+                    title: "Add Project",
+                    url: "/dashboard/add-project",
                 },
             ],
         }
@@ -75,7 +80,7 @@ export async function AppSidebar({ ...props }: React.ComponentProps<typeof Sideb
                                 {item.items.map((item) => (
                                     <SidebarMenuItem key={item.title}>
                                         <SidebarMenuButton asChild>
-                                            <a href={item.url}>{item.title}</a>
+                                            <Link href={item.url}>{item.title}</Link>
                                         </SidebarMenuButton>
                                     </SidebarMenuItem>
                                 ))}

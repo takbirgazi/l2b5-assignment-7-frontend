@@ -115,7 +115,7 @@ const SingleBlogClient = ({ blog }: SingleBlogClientProps) => {
                 {blog.thumbnail ? (
                     <div className="rounded-lg overflow-hidden mb-8">
                         <figure>
-                            <Image src={blog.thumbnail} alt={blog.title} />
+                            <Image width={1200} height={630} src={blog.thumbnail} alt={blog.title} />
                         </figure>
                     </div>
                 ) : (
@@ -183,16 +183,6 @@ const SingleBlogClient = ({ blog }: SingleBlogClientProps) => {
                         </p>
                     </CardContent>
                 </Card>
-
-                {/* Related Posts */}
-                <div className="mt-12">
-                    <h3 className="text-2xl font-bold mb-6">Related Articles</h3>
-                    <div className="grid md:grid-cols-2 gap-6">
-                        <p className="text-muted-foreground col-span-2 text-center py-8">
-                            No related articles yet
-                        </p>
-                    </div>
-                </div>
             </article>
         </div>
     )

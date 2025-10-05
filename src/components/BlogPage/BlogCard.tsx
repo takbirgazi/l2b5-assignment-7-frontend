@@ -8,7 +8,7 @@ import Image from "next/image";
 const BlogCard = ({ blog }: { blog: IBlog }) => {
     return (
         <Link href={`/blog/${blog.slug}`} key={blog.id}>
-            <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-primary overflow-hidden h-full">
+            <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-primary overflow-hidden py-0 h-full">
                 {
                     blog.thumbnail ? (
                         <div className="relative h-48 w-full">
@@ -45,7 +45,7 @@ const BlogCard = ({ blog }: { blog: IBlog }) => {
                     </CardTitle>
                 </CardHeader>
 
-                <CardContent>
+                <CardContent className="pb-6">
                     <p className="text-muted-foreground mb-4 line-clamp-3">
                         <div
                             dangerouslySetInnerHTML={{ __html: blog.content }}

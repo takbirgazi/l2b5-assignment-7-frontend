@@ -5,12 +5,14 @@ import {
     SidebarProvider,
     SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { requireAuth } from "@/lib/auth";
 
-export default function DashboardLayout({
+export default async function DashboardLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+    await requireAuth()
     return (
         <SidebarProvider>
             <AppSidebar />

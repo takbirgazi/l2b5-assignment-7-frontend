@@ -148,7 +148,7 @@ export default function DashboardPage() {
           <TabsContent value="blogs" className="space-y-4">
             <div className="flex justify-between items-center">
               <h2 className="text-2xl font-bold">All Blogs</h2>
-              <Link href="/dashboard/blogs/create">
+              <Link href="/dashboard/add-blog">
                 <Button className="gap-2">
                   <Plus className="h-4 w-4" />
                   Create Blog
@@ -232,7 +232,7 @@ export default function DashboardPage() {
           <TabsContent value="projects" className="space-y-4">
             <div className="flex justify-between items-center">
               <h2 className="text-2xl font-bold">All Projects</h2>
-              <Link href="/dashboard/projects/create">
+              <Link href="/dashboard/add-project">
                 <Button className="gap-2">
                   <Plus className="h-4 w-4" />
                   Create Project

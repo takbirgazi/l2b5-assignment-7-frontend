@@ -11,12 +11,12 @@ import { IProject } from "@/types/project";
 const ProjectCard = ({ project }: { project: IProject }) => {
     return (
         <Link href={`/project/${project.slug}`} key={project.id}>
-            <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-primary overflow-hidden h-full flex flex-col">
+            <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-primary overflow-hidden py-0 h-full flex flex-col">
                 {/* Project Image */}
-                <div className="h-48 bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center relative overflow-hidden">
+                <div className="h-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center relative overflow-hidden">
                     {project.thumbnail ? (
-                        <figure>
-                            <Image src={project.thumbnail} alt={project.name} />
+                        <figure className="w-full h-full">
+                            <Image className="w-full h-full" width={500} height={380} src={project.thumbnail} alt={project.name} />
                         </figure>
                     ) : (
                         <Code2 className="w-16 h-16 text-primary/50 group-hover:scale-110 transition-transform duration-300" />
@@ -32,7 +32,7 @@ const ProjectCard = ({ project }: { project: IProject }) => {
                     </p>
                 </CardHeader>
 
-                <CardContent>
+                <CardContent className="pb-6">
                     {/* Technologies */}
                     {project.techStack && project.techStack.length > 0 && (
                         <div className="flex flex-wrap gap-2 mb-4">

@@ -1,24 +1,24 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { AuthResponse, LoginCredentials } from "@/types/response";
+import { LoginCredentials } from "@/types/response";
 import axiosInterceptor from "./axios";
 
 
 // ==================== AUTH APIs ====================
 
 // Login
-export async function login(credentials: LoginCredentials): Promise<AuthResponse | null> {
+// lib/apis.ts - Update login function
+export async function login(credentials: LoginCredentials) {
     try {
         const res = await axiosInterceptor.post('/auth/login', credentials)
 
         if (res.data.accessToken && res.data.refreshToken) {
-            if (res.data.user) {
-                localStorage.setItem("user", JSON.stringify(res.data.user))
-            }
+            // Set cookies
+            document.cookie = `accessToken=${res.data.accessToken}; path=/; max-age=86400; SameSite=Lax`
+            document.cookie = `refreshToken=${res.data.refreshToken}; path=/; max-age=2592000; SameSite=Lax`
         }
 
         return res.data
     } catch (error: any) {
-        console.error("Login failed:", error?.response?.data?.message || error?.message)
         throw error
     }
 }
