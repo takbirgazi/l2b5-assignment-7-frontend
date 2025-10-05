@@ -129,7 +129,7 @@ export async function createProject(projectData: any) {
 export async function updateProject(slug: string, projectData: any) {
     const token = await getAuthToken();
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/project/${slug}`, {
-        method: "PUT",
+        method: "PATCH",
         headers: { "Content-Type": "application/json", Authorization: token || "" },
         body: JSON.stringify(projectData),
     });
@@ -168,7 +168,7 @@ export async function createBlog(blogData: any) {
 export async function updateBlog(slug: string, blogData: any) {
     const token = await getAuthToken();
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blog/${slug}`, {
-        method: "PUT",
+        method: "PATCH",
         headers: { "Content-Type": "application/json", Authorization: token || "" },
         body: JSON.stringify(blogData),
     });

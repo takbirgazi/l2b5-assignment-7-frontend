@@ -204,7 +204,7 @@ export default function DashboardPage() {
                               <Eye className="h-4 w-4" />
                             </Button>
                           </Link>
-                          <Link href={`/dashboard/blogs/edit/${blog.slug}`}>
+                          <Link href={`/dashboard/blog/${blog.slug}`}>
                             <Button variant="outline" size="icon">
                               <Edit className="h-4 w-4" />
                             </Button>
@@ -271,7 +271,7 @@ export default function DashboardPage() {
                               <Eye className="h-4 w-4" />
                             </Button>
                           </Link>
-                          <Link href={`/dashboard/projects/edit/${project.slug}`}>
+                          <Link href={`/dashboard/project/${project.slug}`}>
                             <Button variant="outline" size="icon">
                               <Edit className="h-4 w-4" />
                             </Button>
