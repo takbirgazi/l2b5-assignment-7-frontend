@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Mail, Lock, Eye, EyeOff, Loader2, AlertCircle } from "lucide-react"
-import Link from "next/link"
+import { handleLogin } from "./actions"
 
 export default function LoginPage() {
     const router = useRouter()
@@ -24,7 +24,6 @@ export default function LoginPage() {
             ...formData,
             [e.target.name]: e.target.value
         })
-        // Clear error when user starts typing
         if (error) setError("")
     }
 
@@ -49,27 +48,25 @@ export default function LoginPage() {
                 return
             }
 
-            // Import login function dynamically to avoid build issues
-            const { login } = await import("@/lib/apis")
+            // Call server action
+            const result = await handleLogin(formData.email, formData.password)
 
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            const response: any = await login({
-                email: formData.email,
-                password: formData.password
-            })
+            if (result.success) {
+                // Store user info in localStorage (optional)
+                if (result.user) {
+                    localStorage.setItem("user", JSON.stringify(result.user))
+                }
 
-            if (response && response.data.accessToken) {
-                // Success - redirect to dashboard or home
+                // Redirect to dashboard
                 router.push("/dashboard")
                 router.refresh()
+            } else {
+                setError(result.message || "Login failed")
             }
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (err: any) {
             console.error("Login error:", err)
-            setError(
-                err?.response?.data?.message ||
-                "Login failed. Please check your credentials and try again."
-            )
+            setError("An unexpected error occurred. Please try again.")
         } finally {
             setIsLoading(false)
         }
@@ -126,11 +123,9 @@ export default function LoginPage() {
 
                         {/* Password Field */}
                         <div className="space-y-2">
-                            <div className="flex items-center justify-between">
-                                <Label htmlFor="password" className="text-sm font-medium">
-                                    Password
-                                </Label>
-                            </div>
+                            <Label htmlFor="password" className="text-sm font-medium">
+                                Password
+                            </Label>
                             <div className="relative">
                                 <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                                 <Input
@@ -159,7 +154,7 @@ export default function LoginPage() {
                             </div>
                         </div>
 
-                        {/* Remember Me Checkbox */}
+                        {/* Remember Me */}
                         <div className="flex items-center space-x-2">
                             <input
                                 type="checkbox"
